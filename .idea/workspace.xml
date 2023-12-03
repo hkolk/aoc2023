@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/assertj_core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetbrains_kotlin_test_junit5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aoc2023.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day1.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Extensions.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Itertools.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Point2D.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Point3D.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Resources.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day1Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/day1.txt" afterDir="false" />
+    <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day2.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day2Test.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/day2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day1.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day1.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day1Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day1Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +26,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -73,43 +65,63 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day1Test">
-    <configuration name="Day1Test$Part1.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Day2Test">
+    <configuration name="Day2Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day1Test" />
-      <option name="MAIN_CLASS_NAME" value="Day1Test$Part1" />
+      <option name="PACKAGE_NAME" value="Day2Test" />
+      <option name="MAIN_CLASS_NAME" value="Day2Test$Part1" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day2Test$Part1.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day2Test" />
+      <option name="MAIN_CLASS_NAME" value="Day2Test$Part1" />
       <option name="METHOD_NAME" value="Matches Example" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Day2Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day2Test" />
+      <option name="MAIN_CLASS_NAME" value="Day2Test$Part2" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day2Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day2Test" />
+      <option name="MAIN_CLASS_NAME" value="Day2Test$Part2" />
+      <option name="METHOD_NAME" value="Matches Example" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Day1Test" />
+      <option name="MAIN_CLASS_NAME" value="Day2Test" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="aoc2023" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="aoc2023" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Day1Test" />
-        <item itemvalue="JUnit.Day1Test$Part1.Matches Example" />
+        <item itemvalue="JUnit.Day2Test" />
+        <item itemvalue="JUnit.Day2Test$Part2.Actual Answer" />
+        <item itemvalue="JUnit.Day2Test$Part2.Matches Example" />
+        <item itemvalue="JUnit.Day2Test$Part1.Actual Answer" />
+        <item itemvalue="JUnit.Day2Test$Part1.Matches Example" />
       </list>
     </recent_temporary>
   </component>
@@ -125,10 +137,25 @@
       <workItem from="1701416351777" duration="255000" />
       <workItem from="1701416618940" duration="96000" />
       <workItem from="1701416726258" duration="103000" />
+      <workItem from="1701417019047" duration="3636000" />
+      <workItem from="1701502723267" duration="2133000" />
     </task>
+    <task id="LOCAL-00001" summary="Version 1">
+      <option name="closed" value="true" />
+      <created>1701417041189</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701417041189</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Version 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1" />
   </component>
 </project>
