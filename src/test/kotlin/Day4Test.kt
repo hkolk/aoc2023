@@ -39,13 +39,13 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
         @Test
         fun `Matches Example`() {
             val answer = Day4(testInput).solvePart2()
-            assertThat(answer).isEqualTo(467835)
+            assertThat(answer).isEqualTo(30)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day4(realInput).solvePart2()
-            assertThat(answer).isEqualTo(75847567)
+            assertThat(answer).isEqualTo(7013204)
         }
     }
 }
