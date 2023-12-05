@@ -46,12 +46,13 @@ class Day5(val input: List<String>) {
         val seedRanges = input.first().splitIgnoreEmpty(" ").drop(1).map { it.toLong() }
         val seeds = seedRanges.chunked(2).map { (it[0]..<it[0]+it[1]) }
         val mappers = input.drop(2).splitBy { it.isEmpty() }.map(Mapper::fromList)
+        val mappersMap = mappers.associateBy { it.to }
 
         for(i in 0..1_000_000_000) {
             var current = "location"
             var result = i.toLong()
             while(current != "seed") {
-                val mapper = mappers.find { it.to == current }!!
+                val mapper = mappersMap[current]!!
                 result = mapper.unMap(result)
                 current = mapper.from
             }
