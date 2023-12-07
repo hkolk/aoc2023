@@ -41,7 +41,7 @@ Distance:  9  40  200
         @Test
         fun `Actual Answer`() {
             val answer = Day6(realInput).solvePart2()
-            assertThat(answer).isEqualTo(148_041_808)
+            assertThat(answer).isEqualTo(32583852)
         }
     }
 }
