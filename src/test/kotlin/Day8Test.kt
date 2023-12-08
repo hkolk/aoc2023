@@ -56,7 +56,7 @@ ZZZ = (ZZZ, ZZZ)
         @Test
         fun `Actual Answer`() {
             val answer = Day8(realInput).solvePart2()
-            assertThat(answer).isEqualTo(245794069)
+            assertThat(answer).isEqualTo(24035773251517L)
         }
     }
 }
