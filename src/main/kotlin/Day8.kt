@@ -3,13 +3,10 @@ class Day8(input: List<String>) {
     private val initialDirections = input.first().toList()
 
     private fun solve(start: String, state:List<Char>): Int {
-        val directions = ArrayDeque(state)
+        val directions = CircularIterator(state)
         var cur = start
         repeat(1_000_000) {step ->
-            if(directions.isEmpty()) {
-                directions.addAll(initialDirections)
-            }
-            cur = when(directions.removeFirst()) {
+            cur = when(directions.next()) {
                 'L' -> paths[cur]!!.first
                 'R' -> paths[cur]!!.second
                 else -> throw IllegalStateException()
@@ -18,7 +15,7 @@ class Day8(input: List<String>) {
                 return step+1
             }
         }
-        TODO()
+        throw IllegalStateException("Solution not found after 1_000_000 steps")
     }
     fun solvePart1() = solve("AAA", initialDirections)
 
