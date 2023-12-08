@@ -45,17 +45,6 @@ class Day7(val input: List<String>) {
         }
 
         override fun compareTo(other: Hand): Int {
-            /*
-            when(score.compareTo(other.score)) {
-                0 -> hand.zip(other.hand).forEach { (aChar, bChar) ->
-                    val score = convertCard(aChar).compareTo(convertCard(bChar))
-                    if (score != 0) {
-                        return score
-                    }
-                }
-                else -> return score
-            }
-            */
             val score = score.compareTo(other.score)
             if (score != 0) {
                 return score
