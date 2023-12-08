@@ -75,3 +75,25 @@ class CircularIterator<T>(val list: List<T>): Iterator<T> {
 
     fun getIndex() = i
 }
+
+
+fun Long.gcd(other:Long): Long {
+    var b = other
+    var a = this
+    while(b > 0) {
+        val temp = b
+        b = a % b
+        a = temp
+    }
+    return a
+}
+fun List<Long>.gcd(): Long {
+    return this.drop(1).fold(this.first()) { acc, i -> acc.gcd(i)}
+}
+
+fun Long.lcm(other:Long): Long {
+    return this * (other / this.gcd(other))
+}
+fun List<Long>.lcm(): Long {
+    return this.drop(1).fold(this.first()) { acc, i -> acc.lcm(i)}
+}

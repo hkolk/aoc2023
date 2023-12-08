@@ -1,13 +1,13 @@
-class Day8(val input: List<String>) {
-    val paths = input.drop(2).associate { line -> line.splitIgnoreEmpty(" ", "(", ")", ",").let { it[0] to Pair(it[2], it[3]) } }
-    val initialDirections = input.first().toList()
+class Day8(input: List<String>) {
+    private val paths = input.drop(2).associate { line -> line.splitIgnoreEmpty(" ", "(", ")", ",").let { it[0] to Pair(it[2], it[3]) } }
+    private val initialDirections = input.first().toList()
 
-    fun solve(start: String, state:List<Char>): Triple<Int, String, List<Char>> {
+    private fun solve(start: String, state:List<Char>): Int {
         val directions = ArrayDeque(state)
         var cur = start
         repeat(1_000_000) {step ->
             if(directions.isEmpty()) {
-                directions.addAll(input.first().toList())
+                directions.addAll(initialDirections)
             }
             cur = when(directions.removeFirst()) {
                 'L' -> paths[cur]!!.first
@@ -15,21 +15,17 @@ class Day8(val input: List<String>) {
                 else -> throw IllegalStateException()
             }
             if(cur.endsWith("Z")) {
-                return Triple(step+1, cur, directions)
+                return step+1
             }
         }
         TODO()
     }
-    fun solvePart1() = solve("AAA", initialDirections).first
+    fun solvePart1() = solve("AAA", initialDirections)
 
     fun solvePart2(): Long {
         var starts = paths.keys.filter { it.endsWith("A") }
-        val times = starts.map { solve(it, initialDirections) }
-        val div = times.map { it.first / initialDirections.size }
-        //println(div)
-        //println(div.multiply())
-        //println(initialDirections.size * div.multiply())
-        return initialDirections.size * div.multiply()
-
+        val times = starts.map { solve(it, initialDirections).toLong() }
+        return times.lcm()
     }
+
 }
