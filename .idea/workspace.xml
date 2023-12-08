@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day8.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day8Test.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/day8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day7.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day7.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,47 +66,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day7Test">
-    <configuration name="Day7Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day7Test" />
-      <option name="MAIN_CLASS_NAME" value="Day7Test$Part1" />
-      <option name="METHOD_NAME" value="Actual Answer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day7Test$Part1.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day7Test" />
-      <option name="MAIN_CLASS_NAME" value="Day7Test$Part1" />
-      <option name="METHOD_NAME" value="Matches Example" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day7Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day7Test" />
-      <option name="MAIN_CLASS_NAME" value="Day7Test$Part2" />
-      <option name="METHOD_NAME" value="Actual Answer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day7Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day7Test" />
-      <option name="MAIN_CLASS_NAME" value="Day7Test$Part2" />
-      <option name="METHOD_NAME" value="Matches Example" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Day8Test$Part2.Actual Answer">
     <configuration name="Day7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="" />
@@ -114,13 +76,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day8Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day8Test" />
+      <option name="MAIN_CLASS_NAME" value="Day8Test$Part1" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day8Test$Part1.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day8Test" />
+      <option name="MAIN_CLASS_NAME" value="Day8Test$Part1" />
+      <option name="METHOD_NAME" value="Matches Example" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day8Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day8Test" />
+      <option name="MAIN_CLASS_NAME" value="Day8Test$Part2" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day8Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day8Test" />
+      <option name="MAIN_CLASS_NAME" value="Day8Test$Part2" />
+      <option name="METHOD_NAME" value="Matches Example" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Day8Test$Part2.Actual Answer" />
+        <item itemvalue="JUnit.Day8Test$Part2.Matches Example" />
+        <item itemvalue="JUnit.Day8Test$Part1.Actual Answer" />
+        <item itemvalue="JUnit.Day8Test$Part1.Matches Example" />
         <item itemvalue="JUnit.Day7Test" />
-        <item itemvalue="JUnit.Day7Test$Part2.Actual Answer" />
-        <item itemvalue="JUnit.Day7Test$Part2.Matches Example" />
-        <item itemvalue="JUnit.Day7Test$Part1.Actual Answer" />
-        <item itemvalue="JUnit.Day7Test$Part1.Matches Example" />
       </list>
     </recent_temporary>
   </component>
