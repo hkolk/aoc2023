@@ -2,6 +2,7 @@ class Day10(val input: List<String>) {
     val map = input.flatMapIndexed{ y, line ->
         line.mapIndexed{x, c ->  Pipe(c, Point2D(x, y))}
     }
+    val lookupMap = map.associateBy{ it.loc }
     data class Pipe(val name: Char, val loc: Point2D) {
         fun connectedTo(): List<Point2D> {
             return when(name) {
@@ -45,7 +46,7 @@ class Day10(val input: List<String>) {
             }
         }
     }
-    fun findLoop(): List<Pipe> {
+    private fun findLoop(): List<Pipe> {
         val start = map.first { it.name == 'S' }
         val connected = map.filter { start.loc in it.connectedTo()  }
         assert(connected.size == 2)
@@ -57,7 +58,7 @@ class Day10(val input: List<String>) {
             loop.add(cur)
             val next = cur.connectedTo().first { it != prev.loc }
             prev = cur
-            cur = map.first{it.loc == next}
+            cur = lookupMap[next]!!
         }
         return loop
     }
@@ -66,18 +67,19 @@ class Day10(val input: List<String>) {
 
     fun solvePart2(): Int {
         val loop = findLoop()
+        val loopCoords = loop.map { it.loc }.toSet()
         val loopMap = loop.associate { it.loc to it.name.toPipeChar() }
 
         // Note: I quickly cheated and checked on the print that righthand side is the inner part.
         // I could check it but meh
         var prev2 = loop.first()
-        val rightBlocks = loop.flatMap { pos -> val right = pos.right(prev2.loc); prev2=pos; right }.filter { it !in loopMap.keys }
+        val rightBlocks = loop.flatMap { pos -> val right = pos.right(prev2.loc); prev2=pos; right }.filter { it !in loopCoords }
 
         val queue = rightBlocks.toMutableList()
         val enclosed = rightBlocks.toMutableSet()
         while(queue.isNotEmpty()) {
             val cur = queue.removeAt(0)
-            val fill = cur.adjacent().filter { it !in enclosed && it !in loopMap.keys }
+            val fill = cur.adjacent().filter { it !in enclosed && it !in loopCoords }
             queue.addAll(fill)
             enclosed.addAll(fill)
             // Safety
