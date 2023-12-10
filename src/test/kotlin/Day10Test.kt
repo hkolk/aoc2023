@@ -29,7 +29,7 @@ LJ.LJ
         @Test
         fun `Actual Answer`() {
             val answer = Day10(realInput).solvePart1()
-            assertThat(answer).isEqualTo(1995001648)
+            assertThat(answer).isEqualTo(6773)
         }
     }
     @Nested
@@ -38,13 +38,13 @@ LJ.LJ
         @Test
         fun `Matches Example`() {
             val answer = Day10(testInput).solvePart2()
-            assertThat(answer).isEqualTo(2)
+            assertThat(answer).isEqualTo(1)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day10(realInput).solvePart2()
-            assertThat(answer).isEqualTo(988)
+            assertThat(answer).isEqualTo(493)
         }
     }
 }

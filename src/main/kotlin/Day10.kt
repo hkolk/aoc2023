@@ -1,5 +1,7 @@
 class Day10(val input: List<String>) {
-
+    val map = input.flatMapIndexed{ y, line ->
+        line.mapIndexed{x, c ->  Pipe(c, Point2D(x, y))}
+    }
     data class Pipe(val name: Char, val loc: Point2D) {
         fun connectedTo(): List<Point2D> {
             return when(name) {
@@ -43,40 +45,7 @@ class Day10(val input: List<String>) {
             }
         }
     }
-    fun solvePart1(): Int {
-        val map = input.flatMapIndexed{ y, line ->
-            line.mapIndexed{x, c ->  Pipe(c, Point2D(x, y))}
-        }
-        val start = map.first { it.name == 'S' }
-        val connected = map.filter { start.loc in it.connectedTo()  }
-        assert(connected.size == 2)
-        var cur = connected.first()
-        var prev = start
-        val loop = mutableSetOf(start, cur)
-
-        while(cur != start) {
-            loop.add(cur)
-            val next = cur.connectedTo().first { it != prev.loc }
-            prev = cur
-            cur = map.first{it.loc == next}
-        }
-        return loop.size / 2
-        TODO()
-    }
-
-    fun properChar(orig: Char) = when(orig) {
-        '-' -> '═'
-        '|' -> '║'
-        'F' -> '╔'
-        '7' -> '╗'
-        'J' -> '╝'
-        'L' -> '╚'
-        else -> orig
-    }
-    fun solvePart2(): Int {
-        val map = input.flatMapIndexed{ y, line ->
-            line.mapIndexed{x, c ->  Pipe(c, Point2D(x, y))}
-        }
+    fun findLoop(): List<Pipe> {
         val start = map.first { it.name == 'S' }
         val connected = map.filter { start.loc in it.connectedTo()  }
         assert(connected.size == 2)
@@ -90,14 +59,19 @@ class Day10(val input: List<String>) {
             prev = cur
             cur = map.first{it.loc == next}
         }
-        val loopMap = loop.associate { it.loc to properChar(it.name) }
-        //loopMap.printChars()
+        return loop
+    }
+    fun solvePart1() = findLoop().size / 2
+
+
+    fun solvePart2(): Int {
+        val loop = findLoop()
+        val loopMap = loop.associate { it.loc to it.name.toPipeChar() }
 
         // Note: I quickly cheated and checked on the print that righthand side is the inner part.
         // I could check it but meh
         var prev2 = loop.first()
         val rightBlocks = loop.flatMap { pos -> val right = pos.right(prev2.loc); prev2=pos; right }.filter { it !in loopMap.keys }
-        //(rightBlocks.associateWith { 'o' } + loopMap).printChars()
 
         val queue = rightBlocks.toMutableList()
         val enclosed = rightBlocks.toMutableSet()
@@ -106,14 +80,12 @@ class Day10(val input: List<String>) {
             val fill = cur.adjacent().filter { it !in enclosed && it !in loopMap.keys }
             queue.addAll(fill)
             enclosed.addAll(fill)
-            println("Queue: ${queue.size}, ${fill.toList()}")
+            // Safety
             if(queue.size > 10_000) {
                 throw IllegalStateException()
             }
         }
-        (enclosed.associateWith { 'o' } + loopMap).printChars()
+        //(enclosed.associateWith { 'o' } + loopMap).printChars()
         return enclosed.count()
-
-        TODO()
     }
 }

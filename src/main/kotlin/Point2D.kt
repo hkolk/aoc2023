@@ -1,4 +1,3 @@
-import java.lang.IllegalArgumentException
 import kotlin.math.absoluteValue
 
 data class Point2D(val x:Int, val y:Int) {
@@ -120,4 +119,13 @@ fun Collection<Point2D>.print() {
         }
         println()
     }
+}
+fun Char.toPipeChar() = when(this) {
+    '-' -> '═'
+    '|' -> '║'
+    'F' -> '╔'
+    '7' -> '╗'
+    'J' -> '╝'
+    'L' -> '╚'
+    else -> this
 }
