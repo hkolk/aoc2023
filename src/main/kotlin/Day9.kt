@@ -1,7 +1,7 @@
 class Day9( input: List<String>) {
 
     val input = input.map { it.splitIgnoreEmpty(" ").map(String::toInt) }
-    
+
     private fun findDiff(nums: List<Int>, funct:(List<Int>, Int ) -> Int): Int {
         val diffs = nums.windowed(2).map { it[1] - it[0] }
         return if(diffs.all { it == 0 }) {
