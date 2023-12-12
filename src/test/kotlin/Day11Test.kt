@@ -42,14 +42,14 @@ class Day11Test {
     inner class Part2 {
         @Test
         fun `Matches Example`() {
-            val answer = Day11(testInput).solvePart2()
-            assertThat(answer).isEqualTo(1)
+            val answer = Day11(testInput).solvePart2(100)
+            assertThat(answer).isEqualTo(8410)
         }
 
         @Test
         fun `Actual Answer`() {
-            val answer = Day11(realInput).solvePart2()
-            assertThat(answer).isEqualTo(493)
+            val answer = Day11(realInput).solvePart2(1_000_000)
+            assertThat(answer).isEqualTo(406725732046L)
         }
     }
 }
