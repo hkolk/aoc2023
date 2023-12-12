@@ -39,7 +39,7 @@ class Day12Test {
         @Test
         fun `Matches Example`() {
             val answer = Day12(testInput).solvePart2()
-            assertThat(answer).isEqualTo(8410)
+            assertThat(answer).isEqualTo(525152)
         }
 
         @Test
