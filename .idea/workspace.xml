@@ -65,16 +65,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day12Test$Part2.Actual Answer">
-    <configuration name="Day11Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Day11Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Day12Test">
     <configuration name="Day12Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="Day12Test" />
@@ -115,13 +106,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day12Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Day12Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Day12Test" />
         <item itemvalue="JUnit.Day12Test$Part2.Actual Answer" />
         <item itemvalue="JUnit.Day12Test$Part2.Matches Example" />
         <item itemvalue="JUnit.Day12Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day12Test$Part1.Matches Example" />
-        <item itemvalue="JUnit.Day11Test" />
       </list>
     </recent_temporary>
   </component>
