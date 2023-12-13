@@ -73,14 +73,14 @@ class Day13Test {
     inner class Part1 {
         @Test
         fun `Matches Example`() {
-            val answer = Day13(testInput4).solvePart1()
+            val answer = Day13(testInput).solvePart1()
             assertThat(answer).isEqualTo(405)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day13(realInput).solvePart1()
-            assertThat(answer).isEqualTo(8075)
+            assertThat(answer).isEqualTo(34202)
         }
     }
     @Nested
@@ -89,13 +89,13 @@ class Day13Test {
         @Test
         fun `Matches Example`() {
             val answer = Day13(testInput).solvePart2()
-            assertThat(answer).isEqualTo(525152)
+            assertThat(answer).isEqualTo(400)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day13(realInput).solvePart2()
-            assertThat(answer).isEqualTo(4232520187524L)
+            assertThat(answer).isEqualTo(34230)
         }
     }
 }
