@@ -24,6 +24,47 @@ class Day13Test {
 ..##..###
 #....#..#
     """.trimIndent().lines()
+    val testInput3 = """
+.##
+#.#
+#.#
+    """.trimIndent().lines()
+    val testInput2 = """
+....#..#.
+####.#.#.
+...###.##
+..#..##.#
+##...#...
+##.##.#..
+##.....#.
+##...##.#
+...####.#
+.#...####
+####...#.
+###..###.
+..#####.#
+..#..##.#
+..#..##.#
+    """.trimIndent().lines()
+    val testInput4 = """
+        ##..####.###.
+        ###.##..##...
+        ...####.#..##
+        ...####.#..##
+        ######..##...
+        ##..####.###.
+        #.##...##..#.
+        .#..##..##..#
+        .#..##..##..#
+        #.##...##..#.
+        ##..####.###.
+        ######..##...
+        ...####.#..##
+        ...####.#..##
+        ###.##..##...
+        ##..####.###.
+        .##.#.....#.#
+    """.trimIndent().lines()
 
     val realInput = Resources.resourceAsList("day13.txt")
 
@@ -32,7 +73,7 @@ class Day13Test {
     inner class Part1 {
         @Test
         fun `Matches Example`() {
-            val answer = Day13(testInput).solvePart1()
+            val answer = Day13(testInput4).solvePart1()
             assertThat(answer).isEqualTo(405)
         }
 

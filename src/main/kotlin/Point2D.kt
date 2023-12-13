@@ -100,10 +100,10 @@ fun Map<Point2D, Int>.print() {
         println()
     }
 }
-fun Map<Point2D, Char>.printChars() {
+fun Map<Point2D, Char>.printChars(empty:Char=' ') {
     for(y in keys.minAndMaxOf { it.y }.let { it.first..it.second }) {
         for(x in keys.minAndMaxOf { it.x }.let { it.first..it.second }) {
-            print(this[Point2D(x, y)]?:" ")
+            print(this[Point2D(x, y)]?:empty)
         }
         println()
     }
