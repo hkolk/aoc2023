@@ -1,6 +1,8 @@
 import kotlin.math.absoluteValue
 
-data class Point2D(val x:Int, val y:Int) {
+typealias DIRECTION = (Point2D) -> Point2D
+
+data class Point2D(val x:Int, val y:Int): Comparable<Point2D> {
     fun adjacent(): Sequence<Point2D> = sequence {
         DIRECTIONS.map { yield(it(this@Point2D)) }
     }
@@ -83,6 +85,18 @@ data class Point2D(val x:Int, val y:Int) {
         fun fromString(coords: String): Point2D {
             val (x, y) = coords.splitIgnoreEmpty(",").map { it.toInt() }
             return Point2D(x, y)
+        }
+    }
+
+    override fun compareTo(other: Point2D): Int {
+        return if(this.y == other.y) {
+            if(this.x == other.x) {
+                0
+            } else {
+                this.x.compareTo(other.x)
+            }
+        } else {
+            this.y.compareTo(other.y)
         }
     }
 }
