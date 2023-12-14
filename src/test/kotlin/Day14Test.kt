@@ -43,7 +43,7 @@ O.#..O.#.#
         @Test
         fun `Matches Example`() {
             val answer = Day14(testInput).solvePart2()
-            assertThat(answer).isEqualTo(400)
+            assertThat(answer).isEqualTo(64)
         }
 
         @Test
