@@ -1,73 +1,32 @@
-class Day13(val input: List<String>) {
-    val maps = input.splitBy { it.length == 0 }.map { map ->
+class Day13(input: List<String>) {
+    private val maps = input.splitBy { it.isEmpty() }.map { map ->
         map.flatMapIndexed{ y, line ->
             line.mapIndexed{ x, c -> Point2D(x+1, y+1) to c }.filter { it.second == '#' }.map { it.first }
         }
     }
-    fun findRowReflection(map: List<Point2D>, mustContain: Point2D? = null): Int? {
-        val rows = map.groupBy { it.y }.map { it.key to it.value.map { it.x } }.toMap()
-        //println(rows)
-        // check min
-        val minY = rows.keys.min()
-        val matchesMin = rows.filter { it.value == rows[minY] && it.key != minY }
-        //if(matchesMin.size > 1 ) { TODO("Double Matches!") }
-        matchesMin.map { it.key }.forEach { found ->
-            val center = minY + (found - minY)/2
-            //println("Min-Y: $center")
-            val matches = (0 .. found-center).map { rows[minY+it] == rows[found-it]}
-            //println(matches)
-            //println((0 .. found-center))
-            if(matches.all { it } && (found - minY) % 2 == 1) {
-                if(mustContain == null || mustContain.y <= found) {
-                    return center
-                }
-            }
-        }
-        // check max
-        val maxY = rows.keys.max()
-        val matchesMax = rows.filter { it.value == rows[maxY] && it.key != maxY }
-        //if(matchesMax.size > 1 ) { TODO("Double Matches!") }
-        matchesMax.map { it.key }.forEach { found2 ->
-            val center = found2 + (maxY - found2) / 2
-            //println("Max-Y: $center")
-            val matches = (0..center - found2).map { rows[found2 + it] == rows[maxY - it] }
-            //println(matches)
-            if (matches.all { it } && (maxY - found2) % 2 == 1) {
-                if(mustContain == null || mustContain.y >= found2) {
-                    return center
-                }
-            }
-        }
-        return null
-    }
 
-    fun findColumnReflection(map: List<Point2D>, mustContain: Point2D? = null): Int? {
+    private fun findColumnReflection(map: List<Point2D>, mustContain: Point2D? = null): Int? {
         val columns = map.groupBy { it.x }.map { it.key to it.value.map { it.y } }.toMap()
-        //println(columns)
+
         // check min
         val minX = columns.keys.min()
         val matchesMin = columns.filter { it.value == columns[minX] && it.key != minX }
-        //if(matchesMin.size > 1 ) { TODO("Double Matches!") }
         matchesMin.map { it.key }.forEach { found ->
             val center = minX + (found - minX)/2
-            //println("Min-X: $center")
             val matches = (0 .. found - center).map { columns[minX+it] == columns[found-it]}
-            //println(matches)
             if(matches.all { it } && (found - minX) % 2 == 1) {
                 if(mustContain == null || mustContain.x <= found) {
                     return center
                 }
             }
         }
+
         // check max
         val maxX = columns.keys.max()
         val matchesMax = columns.filter { it.value == columns[maxX] && it.key != maxX }
-        //if(matchesMax.size > 1 ) { TODO("Double Matches!") }
         matchesMax.map { it.key }.forEach { found2 ->
             val center = found2 + (maxX - found2)/2
-            //println("Max-X: $center")
             val matches = (0 .. center-found2).map { columns[found2+it] == columns[maxX-it]}
-            //println(matches)
             if(matches.all { it } && (maxX - found2) % 2 == 1) {
                 if(mustContain == null || mustContain.x >= found2) {
                     return center
@@ -78,12 +37,11 @@ class Day13(val input: List<String>) {
     }
     fun solvePart1(): Int {
         val results = maps.map { map ->
-            //map.print()
             val vert = findColumnReflection(map)
             if(vert != null) {
                 vert
             } else {
-                val hor = findRowReflection(map)
+                val hor = findColumnReflection(map.map { Point2D(it.y, it.x)   })
                 if(hor != null) {
                     hor * 100
                 } else {
@@ -91,10 +49,8 @@ class Day13(val input: List<String>) {
                 }
             }
         }
-        //results.forEach { println("Score: $it") }
         return results.sum()
     }
-    infix fun <T> Set<T>.xor(that: Set<T>): Set<T> = (this - that) + (that - this)
 
     fun solvePart2(): Int {
         val results = maps.map { map ->
@@ -107,26 +63,22 @@ class Day13(val input: List<String>) {
                     } else {
                         map + listOf(Point2D(x, y))
                     }
-                    //println(map.toSet() xor newMap.toSet())
-                    //newMap.print()
                     val vert = findColumnReflection(newMap, Point2D(x, y))
                     if(vert != null) {
                         innerScore = vert
                     } else {
-                        val hor = findRowReflection(newMap, Point2D(x, y))
+                        val hor = findColumnReflection(newMap.map { Point2D(it.y, it.x) }, Point2D(y, x))
                         if(hor != null) {
                             innerScore = hor * 100
                         }
                     }
-                    //println("${Point2D(x, y)} => $innerScore")
                     if(innerScore > 0) {
-                        //newMap.print()
                         score = innerScore
                     }
                 }
             }
             score
         }
-        //results.forEach { println("Score: $it") }
-        return results.sum()    }
+        return results.sum()
+    }
 }

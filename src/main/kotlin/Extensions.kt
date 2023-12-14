@@ -97,3 +97,5 @@ fun Long.lcm(other:Long): Long {
 fun List<Long>.lcm(): Long {
     return this.drop(1).fold(this.first()) { acc, i -> acc.lcm(i)}
 }
+
+infix fun <T> Set<T>.xor(that: Set<T>): Set<T> = (this - that) + (that - this)
