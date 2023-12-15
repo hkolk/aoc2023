@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day14.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day14.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day14Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day14Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day14Test$Part2.Actual Answer">
+  <component name="RunManager" selected="JUnit.Day14Test$Part1.Actual Answer">
     <configuration name="Day13Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="Day13Test" />
@@ -118,9 +117,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Day14Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day14Test$Part2.Actual Answer" />
         <item itemvalue="JUnit.Day14Test$Part2.Matches Example" />
-        <item itemvalue="JUnit.Day14Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day14Test$Part1.Matches Example" />
         <item itemvalue="JUnit.Day13Test$Part2.Actual Answer" />
       </list>
