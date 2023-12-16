@@ -49,7 +49,7 @@ class Day16Test {
         @Test
         fun `Actual Answer`() {
             val answer = Day16(realInput).solvePart2()
-            assertThat(answer).isEqualTo(245223)
+            assertThat(answer).isEqualTo(7572)
         }
     }
 }

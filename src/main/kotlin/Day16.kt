@@ -38,11 +38,12 @@ class Day16(val input: List<String>) {
                             listOf(Beam(next, beam.dir))
                     else -> throw IllegalStateException()
                 }
-            }.toSet()
+            }.filter { it !in covered }.toSet()
             if(!covered.addAll(beams)) {
                 return covered.map { it.pos }.toSet().size
             }
 
+            /*
             step++
             if(step % 100 == 0 ) {
                 //println("Step: $step")
@@ -52,7 +53,7 @@ class Day16(val input: List<String>) {
                 //covered.map { it.pos }.print()
             }
 
-
+             */
         }
         TODO()
     }
@@ -60,12 +61,11 @@ class Day16(val input: List<String>) {
     fun solvePart1() = solve(Beam(Point2D(-1, 0), "EAST"))
 
     fun solvePart2(): Int {
-        val startBeams = (0 until input.size).flatMap { y ->
+        val startBeams = input.indices.flatMap { y ->
             listOf(Beam(Point2D(input.first().length, y), "WEST"), Beam(Point2D(-1, y), "EAST"), )
-        } + (0 until input.first().length).flatMap { x ->
+        } + input.first().indices.flatMap { x ->
             listOf(Beam(Point2D(x, -1), "SOUTH"), Beam(Point2D(x, input.size), "NORTH"))
         }
-        return startBeams.map {println(it); solve(it) }.max()
-        TODO()
+        return startBeams.maxOf { solve(it) }
     }
 }
