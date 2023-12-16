@@ -66,6 +66,7 @@ class Day16(val input: List<String>) {
         } + input.first().indices.flatMap { x ->
             listOf(Beam(Point2D(x, -1), "SOUTH"), Beam(Point2D(x, input.size), "NORTH"))
         }
-        return startBeams.maxOf { solve(it) }
+        return startBeams.pmap { solve(it) }.max()
     }
+
 }

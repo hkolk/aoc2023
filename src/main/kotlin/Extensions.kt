@@ -1,3 +1,7 @@
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
 
 fun CharSequence.splitIgnoreEmpty(vararg delimiters: String): List<String> {
     return this.split(*delimiters).filter {
@@ -99,3 +103,7 @@ fun List<Long>.lcm(): Long {
 }
 
 infix fun <T> Set<T>.xor(that: Set<T>): Set<T> = (this - that) + (that - this)
+
+fun <A, B>List<A>.pmap(f: suspend (A) -> B): List<B> = runBlocking {
+    map { async(Dispatchers.Default) { f(it) } }.awaitAll()
+}
