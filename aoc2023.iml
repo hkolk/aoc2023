@@ -14,5 +14,6 @@
     <orderEntry type="library" name="jetbrains.kotlin.test.junit5" level="project" />
     <orderEntry type="library" name="assertj.core" level="project" />
     <orderEntry type="library" name="jetbrains.kotlinx.coroutines.core.jvm" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlin.stdlib" level="project" />
   </component>
 </module>
