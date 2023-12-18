@@ -5,12 +5,14 @@ class Day17(val input: List<String>) {
     val map = input.flatMapIndexed{y, line -> line.mapIndexed{x, c -> Point2D(x, y) to c.digitToInt()}}.toMap()
     val yRange = map.keys.minAndMaxOf { it.y }.toRange()
     val xRange = map.keys.minAndMaxOf { it.x }.toRange()
+    val start = Point2D(0, 0)
+    val end = Point2D(input.first().length-1, input.size-1)
 
     private fun heuristic(a:Point2D, b:Point2D): Int {
         return abs(a.x - b.x) + abs(a.y - b.y)
     }
 
-    private fun findShortestPath(start: Point2D, goal: Point2D, map: Map<Point2D, Int>): List<Stride>? {
+    private fun findShortestPath(start: Point2D, goal: Point2D, map: Map<Point2D, Int>, variant:Int=1): List<Stride>? {
 
         fun generatePath(currentPos: Stride, cameFrom: Map<Stride, Stride>): List<Stride> {
             val path = mutableListOf(currentPos)
@@ -24,7 +26,7 @@ class Day17(val input: List<String>) {
 
         //val openVertices = mutableSetOf(start)
         val openVertices = PriorityQueue<Pair<Stride, Int>>(compareBy { it.second })
-        val startStrides = (Stride(listOf(start), true).turns() + Stride(listOf(start), false).turns()).filter { it.within(xRange, yRange) }
+        val startStrides = (Stride(listOf(start), true).turns(variant) + Stride(listOf(start), false).turns(variant)).filter { it.within(xRange, yRange) }
         val costFromStart = mutableMapOf<Stride, Int>()
         val estimatedTotalCost = mutableMapOf<Stride, Int>()
 
@@ -46,7 +48,7 @@ class Day17(val input: List<String>) {
             closedVertices.add(current)
 
             // next options =
-            for(next in current.turns().filter { it.within(xRange, yRange) }.filterNot { closedVertices.contains(it) }) {
+            for(next in current.turns(variant).filter { it.within(xRange, yRange) }.filterNot { closedVertices.contains(it) }) {
                 val newCost = costFromStart[current]!! + next.path.sumOf { map[it]!! }
                 //val newCost = costFromStart[current]!! + 1
                 if(!costFromStart.containsKey(next) || newCost < costFromStart[next]!!) {
@@ -77,6 +79,17 @@ class Day17(val input: List<String>) {
         fun within(xRange: IntRange, yRange: IntRange): Boolean {
             return path.last().let { it.y in yRange && it.x in xRange }
         }
+        fun generateStridesV2(start: Point2D, direction: DIRECTION, vertical: Boolean): List<Stride> {
+            val accu = mutableListOf<Point2D>()
+            val ret = mutableListOf<List<Point2D>>()
+            (1..10).forEach {i ->
+                accu.add(start.move(direction, i))
+                if(i >= 4) {
+                    ret.add(accu.toList())
+                }
+            }
+            return ret.map { Stride(it, vertical)}
+        }
         fun generateStrides(start: Point2D, direction: DIRECTION, vertical: Boolean): List<Stride> {
             val accu = mutableListOf<Point2D>()
             val ret = mutableListOf<List<Point2D>>()
@@ -86,32 +99,36 @@ class Day17(val input: List<String>) {
             }
             return ret.map { Stride(it, vertical)}
         }
-        fun turns(): List<Stride> {
+        fun turns(variant: Int): List<Stride> {
             val start = path.last()
-            return if(vertical) {
-                generateStrides(start, Point2D.EAST, false) + generateStrides(start, Point2D.WEST, false)
+            if(variant == 1) {
+                return if (vertical) {
+                    generateStrides(start, Point2D.EAST, false) + generateStrides(start, Point2D.WEST, false)
+                } else {
+                    generateStrides(start, Point2D.NORTH, true) + generateStrides(start, Point2D.SOUTH, true)
+                }
+            } else if(variant == 2) {
+                return if (vertical) {
+                    generateStridesV2(start, Point2D.EAST, false) + generateStridesV2(start, Point2D.WEST, false)
+                } else {
+                    generateStridesV2(start, Point2D.NORTH, true) + generateStridesV2(start, Point2D.SOUTH, true)
+                }
             } else {
-                generateStrides(start, Point2D.NORTH, true) + generateStrides(start, Point2D.SOUTH, true)
+                throw IllegalStateException("Missing variant")
             }
         }
     }
 
     fun solvePart1(): Int {
-        val start = Point2D(0, 0)
-        val validStrides = Stride(listOf(start), vertical = true).turns().filter { it.within(xRange, yRange) }
-        //validStrides.forEach { println(it) }
-
-        val end = Point2D(input.first().length-1, input.size-1)
         val result = findShortestPath(start, end, map)
-        (map.toList().map { it.first to it.second.toString().first() } + result!!.flatMap { it.path.map { it to '░'} }).toMap().printChars()
-        result?.forEach { println(it) }
-        result!!.flatMap { it.path }.print()
+        //(map.toList().map { it.first to it.second.toString().first() } + result!!.flatMap { it.path.map { it to '░'} }).toMap().printChars()
         val result2 = result!!.flatMap { it.path.map{ map[it]!!}}.sum()
-        println(result2)
         return result2
-        TODO()
     }
     fun solvePart2(): Int {
-        TODO()
+        val result = findShortestPath(start, end, map, variant=2)
+        //(map.toList().map { it.first to it.second.toString().first() } + result!!.flatMap { it.path.map { it to '░'} }).toMap().printChars()
+        val result2 = result!!.flatMap { it.path.map{ map[it]!!}}.sum()
+        return result2
     }
 }

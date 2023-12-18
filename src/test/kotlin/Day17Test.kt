@@ -37,7 +37,7 @@ class Day17Test {
         @Test
         fun `Actual Answer`() {
             val answer = Day17(realInput).solvePart1()
-            assertThat(answer).isEqualTo(7242)
+            assertThat(answer).isEqualTo(1244)
         }
     }
     @Nested
@@ -46,13 +46,13 @@ class Day17Test {
         @Test
         fun `Matches Example`() {
             val answer = Day17(testInput).solvePart2()
-            assertThat(answer).isEqualTo(51)
+            assertThat(answer).isEqualTo(94)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day17(realInput).solvePart2()
-            assertThat(answer).isEqualTo(7572)
+            assertThat(answer).isEqualTo(1367)
         }
     }
 }

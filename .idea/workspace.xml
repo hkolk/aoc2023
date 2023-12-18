@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day17.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day17Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/day17.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetbrains_kotlin_stdlib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aoc2023.iml" beforeDir="false" afterPath="$PROJECT_DIR$/aoc2023.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day17.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day17.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day17Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day17Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,36 +79,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day17Test$Part1.Actual Answer">
-    <configuration name="Day14Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day14Test" />
-      <option name="MAIN_CLASS_NAME" value="Day14Test$Part1" />
-      <option name="METHOD_NAME" value="Actual Answer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day14Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day14Test" />
-      <option name="MAIN_CLASS_NAME" value="Day14Test$Part2" />
-      <option name="METHOD_NAME" value="Actual Answer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day14Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Day14Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Day17Test$Part2.Actual Answer">
     <configuration name="Day17Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="Day17Test" />
@@ -130,13 +100,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day17Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day17Test" />
+      <option name="MAIN_CLASS_NAME" value="Day17Test$Part2" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day17Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day17Test" />
+      <option name="MAIN_CLASS_NAME" value="Day17Test$Part2" />
+      <option name="METHOD_NAME" value="Matches Example" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day17Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Day17Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Day17Test$Part2.Actual Answer" />
+        <item itemvalue="JUnit.Day17Test" />
+        <item itemvalue="JUnit.Day17Test$Part2.Matches Example" />
         <item itemvalue="JUnit.Day17Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day17Test$Part1.Matches Example" />
-        <item itemvalue="JUnit.Day14Test" />
-        <item itemvalue="JUnit.Day14Test$Part2.Actual Answer" />
-        <item itemvalue="JUnit.Day14Test$Part1.Actual Answer" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +153,7 @@
       <workItem from="1701416726258" duration="103000" />
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
-      <workItem from="1702717352735" duration="15886000" />
+      <workItem from="1702717352735" duration="18150000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />
