@@ -53,7 +53,7 @@ U 2 (#7a21e3)
         @Test
         fun `Actual Answer`() {
             val answer = Day18(realInput).solvePart2()
-            assertThat(answer).isEqualTo(1367)
+            assertThat(answer).isEqualTo(173152345887206L)
         }
     }
 }

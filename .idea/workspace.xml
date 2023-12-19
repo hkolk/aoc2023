@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day18.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day18Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/day18.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day18.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day18.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day18Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day18Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +152,7 @@
       <workItem from="1701416726258" duration="103000" />
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
-      <workItem from="1702717352735" duration="24620000" />
+      <workItem from="1702717352735" duration="25496000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />
