@@ -78,7 +78,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day19Test$Part2.Actual Answer">
+  <component name="RunManager" selected="JUnit.Day20Test">
     <configuration name="Day19Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="Day19Test" />
@@ -99,12 +99,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day20Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Day19Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day20Test" />
-      <option name="MAIN_CLASS_NAME" value="Day20Test$Part1" />
-      <option name="METHOD_NAME" value="Actual Answer" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Day19Test" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -130,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Day19Test$Part2.Actual Answer" />
-        <item itemvalue="JUnit.Day19Test$Part2.Matches Example" />
         <item itemvalue="JUnit.Day20Test" />
+        <item itemvalue="JUnit.Day19Test" />
+        <item itemvalue="JUnit.Day19Test$Part2.Matches Example" />
+        <item itemvalue="JUnit.Day19Test$Part2.Actual Answer" />
         <item itemvalue="JUnit.Day20Test$Part2.Matches Example" />
-        <item itemvalue="JUnit.Day20Test$Part1.Actual Answer" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +152,7 @@
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
       <workItem from="1702717352735" duration="25496000" />
-      <workItem from="1702966288839" duration="34595000" />
+      <workItem from="1702966288839" duration="36621000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />

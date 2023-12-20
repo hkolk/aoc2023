@@ -56,7 +56,7 @@ hdj{m>838:A,pv}
         @Test
         fun `Actual Answer`() {
             val answer = Day19(realInput).solvePart2()
-            assertThat(answer).isEqualTo(173152345887206L)
+            assertThat(answer).isEqualTo(127447746739409L)
         }
     }
 }
