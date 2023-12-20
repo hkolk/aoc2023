@@ -23,6 +23,7 @@ class Day20(val input: List<String>) {
         fun abstractToString(classname: String) = "$classname$name, $receivers)"
         abstract fun receive(source: String, high:Boolean): List<Pair<String, Boolean>>
         abstract fun addConnection(name: String)
+        abstract fun value(): Int
     }
 
     class FlipFlop(name:String, receivers:List<String>): Module(name, receivers) {
@@ -37,6 +38,8 @@ class Day20(val input: List<String>) {
             }
         }
 
+        override fun value() = if(on) 1 else 0
+
         override fun addConnection(name: String) {}
 
         override fun toString() = abstractToString("FlipFlop($on, ")
@@ -46,7 +49,8 @@ class Day20(val input: List<String>) {
     class Conjunction(name:String, receivers:List<String>): Module(name, receivers) {
         val connections = mutableMapOf<String, Boolean>()
 
-        val sortOrder = listOf("mg", "hl", "qb", "cd", "ps", "xc", "kz", "mc", "xv", "tx", "rv", "tp", "jc")
+        val sortOrder = listOf(
+            "mg", "hl", "qb", "cd", "ps", "xc", "kz", "mc", "xv", "tx", "rv", "tp", "jc")
         override fun receive(source: String, high: Boolean): List<Pair<String, Boolean>> {
             connections[source] = high
             if(name == "dg") {
@@ -63,36 +67,13 @@ class Day20(val input: List<String>) {
         fun toBits(): String {
             val sorted = connections.map { sortOrder.indexOf(it.key) to it.value }.sortedBy { it.first }.reversed()
             val seperated = sorted.map { if(it.second) 1 else 0 }.joinToString(",")
-            val integer = sorted.map { if(it.second) 1 else 0 }.joinToString("").toInt()
+            val integer = sorted.map { if(it.second) 1 else 0 }.joinToString("").toInt(2)
             return "$seperated ($integer)"
         }
-    }
-
-    fun button(): Pair<Int, Int> {
-        // simulate button
-        var signals = broadcaster.map { Triple("broadcaster", it, false) }
-        var processedHigh = 0
-        var processedLow = 1 + broadcaster.size
-
-        repeat(10000) {
-            //println("Step $it, signals: $signals")
-
-            signals = signals.flatMap { signal ->
-                val receiver = modules[signal.second]
-                if(receiver != null ) {
-                    modules[signal.second]!!.receive(signal.first, signal.third).map { Triple(signal.second, it.first, it.second) }
-                } else {
-                    listOf()
-                }
-            }
-            processedHigh += signals.count { it.third }
-            processedLow += signals.count { !it.third }
-
-            if(signals.isEmpty()) {
-                return processedHigh to processedLow
-            }
+        override fun value(): Int {
+            val sorted = connections.map { sortOrder.indexOf(it.key) to it.value }.sortedBy { it.first }.reversed()
+            return sorted.map { if(it.second) 1 else 0 }.joinToString("").toInt(2)
         }
-        TODO()
     }
     fun solvePart1(): Int {
         println(broadcaster)
@@ -108,7 +89,7 @@ class Day20(val input: List<String>) {
         return high * low
     }
 
-    fun button2(debug:Boolean=false): Pair<Int, Int> {
+    fun button(debug:Boolean=false, round:Int=0): Pair<Int, Int> {
         // simulate button
         var signals = broadcaster.map { Triple("broadcaster", it, false) }
         var processedHigh = 0
@@ -124,6 +105,18 @@ class Day20(val input: List<String>) {
                 } else {
                     listOf()
                 }
+            }
+            if(signals.contains(Triple("jc", "lk", false))) {
+                println("JC message to LK at round $round")
+            }
+            if(signals.contains(Triple("dv", "xt", false))) {
+                println("DV message to XT at round $round")
+            }
+            if(signals.contains(Triple("xq", "sp", false))) {
+                println("XQ message to SP at round $round")
+            }
+            if(signals.contains(Triple("vv", "zv", false))) {
+                println("VV message to ZV at round $round")
             }
             if(debug) {
                 println("  Step $step")
@@ -147,36 +140,41 @@ class Day20(val input: List<String>) {
         modules.forEach { mod -> mod.value.receivers.forEach { println("${mod.key} -> ${it}") } }
         println("}")
     }
-    fun solvePart2(): Int {
+    fun solvePart2(): Long {
         val rxSender = modules.firstNotNullOf { if(it.value.receivers.contains("rx")) it.value else null }
         //println(rxSender)
         val sendersToRxSender = modules.filter { it.value.receivers.contains(rxSender.name) }
         //println(sendersToRxSender)
         var round = 0
-        repeat(4096-2) {
-            button2()
+        repeat((3823*3)+2) {
             round++
+            button(round=round)
 
-            println("Round: $round - ${(modules["jc"] as Conjunction).toBits()}")
+            if (modules["jc"]!!.value() > 1019) {
+                println("Round: $round - ${(modules["jc"] as Conjunction).toBits()}")
+            }
         }
+        return listOf(3767L, 3823L, 3929L, 4051L).fold(1L) { acc, it -> acc.lcm(it)}
 
 
         println("Round $round")
-        button2(true); round++
+        button(true); round++
+        println("Round $round")
+        button(true); round++
+
         println("Round $round")
         printDigraph()
-        button2(true); round++
+        button(true); round++
         printDigraph()
+
         println("Round $round")
-        button2(true); round++
-        println("Round $round")
-        button2(true); round++
+        button(true); round++
 
 
 
         TODO()
         while((modules["dg"] as Conjunction).connections.values.all { !it }) {
-            button2()
+            button()
         }
         println(modules["dg"])
         //modules.forEach { println(it) }
