@@ -7,6 +7,7 @@
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day20.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day20.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day20Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day20Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +78,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day20Test$Part2.Actual Answer">
+  <component name="RunManager" selected="JUnit.Day20Test">
     <configuration name="Day20Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="Day20Test" />
@@ -94,15 +95,6 @@
       <option name="MAIN_CLASS_NAME" value="Day20Test$Part1" />
       <option name="METHOD_NAME" value="Matches Example" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day20Test$Part2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day20Test" />
-      <option name="MAIN_CLASS_NAME" value="Day20Test$Part2" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,13 +119,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day20Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Day20Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Day20Test$Part2.Actual Answer" />
+        <item itemvalue="JUnit.Day20Test" />
         <item itemvalue="JUnit.Day20Test$Part2.Matches Example" />
-        <item itemvalue="JUnit.Day20Test$Part2" />
         <item itemvalue="JUnit.Day20Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day20Test$Part1.Matches Example" />
+        <item itemvalue="JUnit.Day20Test$Part2.Actual Answer" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +153,7 @@
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
       <workItem from="1702717352735" duration="25496000" />
-      <workItem from="1702966288839" duration="28550000" />
+      <workItem from="1702966288839" duration="30094000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />

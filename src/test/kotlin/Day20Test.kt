@@ -38,13 +38,13 @@ broadcaster -> a
         @Test
         fun `Matches Example`() {
             val answer = Day20(testInput).solvePart2()
-            assertThat(answer).isEqualTo(952408144115L)
+            assertThat(answer).isEqualTo(1)
         }
 
         @Test
         fun `Actual Answer`() {
             val answer = Day20(realInput).solvePart2()
-            assertThat(answer).isEqualTo(173152345887206L)
+            assertThat(answer).isEqualTo(229215609826339L)
         }
     }
 }
