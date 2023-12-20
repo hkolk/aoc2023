@@ -88,6 +88,16 @@ class Day19(input: List<String>) {
             }
             return new.fold(1L) { acc, item -> acc * item.size}
         }
+
+        fun intersectCountNew(other: List<Part>): Long {
+            var new = this.elements
+            for(i in other) {
+                new = new.map {
+                    it.key to (i.elements[it.key]?:listOf()).intersect(it.value.toSet()).toList()
+                }.toMap()
+            }
+            return new.values.fold(1L) { acc, item -> acc * item.size}
+        }
         fun surface() = this.elements.values.fold(1L) { acc, item -> acc * item.size}
 
         // remove from `this` everything from other
@@ -144,15 +154,41 @@ class Day19(input: List<String>) {
     }
 
     fun solvePart2(): Long {
-        val part1 = Part(mapOf('x' to (1..7).toList(), 'm' to (1..5).toList()))
-        val part2 = Part(mapOf('x' to (7..10).toList(), 'm' to (3..7).toList()))
-        println("P1: $part1, P2: $part2")
-        println("IntersectCount: ${part1.intersectCount(part2)}")
-        println("P1 area: ${part1.surface()}")
-        println("P2 area: ${part2.surface()}")
-        println("Total: ${part1.surface()+part2.surface()-part1.intersectCount(part2)}")
+        val a = Part(mapOf('x' to (1..10).toList(), 'y' to (1..10).toList()))
+        val b = Part(mapOf('x' to (9..18).toList(), 'y' to (1..11).toList()))
+        val c = Part(mapOf('x' to (1..10).toList(), 'y' to (9..18).toList()))
+        val d = Part(mapOf('x' to (9..18).toList(), 'y' to (9..18).toList()))
+
+        println("a: $a, b: $b, c: $c, d: $d")
+        println("a: ${a.surface()}, b: ${b.surface()}, c: ${c.surface()}, d: ${d.surface()}")
+
+        val aAndB = a.surface() + b.surface() - a.intersectCount(b)
+        val aAndC = a.surface() + c.surface() - a.intersectCount(c)
+        val aAndD = a.surface() + d.surface() - a.intersectCount(d)
+
+        println("A+B Surface: $aAndB")
+        println("A+C Surface: $aAndC")
+        println("A+D Surface: $aAndD")
+
+        val bExclusive = b.surface() - a.intersectCount(b)
+        val cExclusive = c.surface() - c.intersectCount(a) -
+                c.intersectCount(b) +
+                c.intersectCountNew(listOf(a, b))
+        val dExclusive = d.surface() -
+                d.intersectCount(a) -
+                d.intersectCount(b) -
+                d.intersectCount(c) +
+                d.intersectCountNew(listOf(a, b)) +
+                d.intersectCountNew(listOf(a, c)) +
+                d.intersectCountNew(listOf(b, c)) -
+                d.intersectCountNew(listOf(a, b, c))
+        println("dExclusive: $dExclusive")
 
 
+        println("IntersectCount: ${a.intersectCount(b)}")
+        println("P1 area: ${a.surface()}")
+        println("P2 area: ${b.surface()}")
+        println("Total: ${a.surface()+b.surface()-a.intersectCount(b)}")
 
 
         val part = Part(mapOf(
@@ -163,6 +199,24 @@ class Day19(input: List<String>) {
             ))
         val result = recurse("in", part).filter { !it.elements.any { it.value.isEmpty() } }
 
+        val toCalculate = result
+        val visited2 = mutableListOf<Part>()
+        val exclusives = toCalculate.map { base ->
+            var baseCount = base.surface()
+            val intersections = visited2.filter { it.intersectCount(base) > 0 }
+            for(i in 1..intersections.size) {
+                val isectCount = intersections.combinations(i).sumOf { base.intersectCountNew(it) }
+                if(i % 2 == 0) {
+                    baseCount += isectCount
+                } else {
+                    baseCount -= isectCount
+                }
+            }
+            visited2.add(base)
+            baseCount
+        }
+        println(exclusives)
+        return exclusives.sum()
 
 
         println("======== result ========")

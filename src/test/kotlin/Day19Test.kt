@@ -50,7 +50,7 @@ hdj{m>838:A,pv}
         @Test
         fun `Matches Example`() {
             val answer = Day19(testInput).solvePart2()
-            assertThat(answer).isEqualTo(952408144115L)
+            assertThat(answer).isEqualTo(167409079868000L)
         }
 
         @Test
