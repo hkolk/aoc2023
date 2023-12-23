@@ -19,6 +19,15 @@ data class Point3D(val x:Int, val y:Int, val z:Int) {
             Point3D(x, y, z+1)
         )
     }
+    fun allPointsTo(other: Point3D) = sequence {
+        for(x in this@Point3D.x.coerceAtMost(other.x)..this@Point3D.x.coerceAtLeast(other.x)) {
+            for(y in this@Point3D.y.coerceAtMost(other.y)..this@Point3D.y.coerceAtLeast(other.y)) {
+                for(z in this@Point3D.z.coerceAtMost(other.z)..this@Point3D.z.coerceAtLeast(other.z)) {
+                    yield(Point3D(x, y, z))
+                }
+            }
+        }
+    }
 
     companion object {
         fun fromString(coords: String): Point3D {
