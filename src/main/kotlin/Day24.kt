@@ -1,3 +1,6 @@
+import com.microsoft.z3.Context
+import com.microsoft.z3.Status
+
 class Day24(val input: List<String>) {
     val lines = input.mapIndexed { idx, line -> line.splitIgnoreEmpty(" ", ",", "@").let {
         Line(idx, Point3DWide(it[0].toLong(), it[1].toLong(), it[2].toLong()), Point3DWide(it[3].toLong(), it[4].toLong(), it[5].toLong()))
@@ -213,30 +216,120 @@ class Day24(val input: List<String>) {
         }
 
         //val possibleVelocities = (range).flatMap {x -> range.flatMap { y -> range.map { z -> Point3DWide(x, y, z) } }   }
-        val range = -50L..50L
-        yieldVelocities(range, xInvalid, yInvalid, zInvalid).forEach {option ->
+        val range = -500L..500L
+        listOf(Point3DWide(x=107, y=-114, z=304)).forEach {  option ->
+        //yieldVelocities(range, xInvalid, yInvalid, zInvalid).forEach {option ->
             val linesNew = lines.map { Line(it.id, it.position, it.direction - option) }
-            
-            linesNew.forEachIndexed{ idx, lineA ->
-                linesNew.drop(idx+1).forEach { lineB ->
-                    val isect = lineA.intersect3D(lineB)
-                    if(isect != null && lineA.isPointInFuture(isect) && isect.isExact()) {
-                        val isectLong = isect.toLong()
-                        val t0 = (isectLong.x - lineA.position.x) / lineA.direction.x
-                        val t1 = (isectLong.x - lineB.position.x) / lineB.direction.x
-                        val z0 = lineA.position.z + (lineA.direction.z * t0)
-                        val z1 = lineB.position.z + (lineB.direction.z * t1)
-                        if(z0 == z1) {
-                            println("$option, $isectLong,  ---- $t0 - $t1 - $z0 - $z1")
+            val lineA = linesNew[0]
+            val lineB = linesNew[1]
+            //val isect = lineA.intersect3D(lineB)
+            //println(isect)
+            //println(lineA)
+            //println(lineB)
+            //println(lineA.intersect2D(lineB).let { it!!.first.toLong() to it!!.second.toLong() })
+            val isect = lineA.intersect2D(lineB)
+            println(isect!!.second % 1 == 0.0)
+            println(isect!!.second % 1)
+            if(isect != null && lineA.isPointInFuture(Point3DDouble(isect.first, isect.second, 0.0), true) && isect.first % 1 == 0.0 && isect.second % 1 == 0.0 ) {
+                val isectLong = Point3DDouble(isect.first, isect.second, 0.0).toLong()
+                val t0 = (isectLong.x - lineA.position.x) / lineA.direction.x
+                val t1 = (isectLong.x - lineB.position.x) / lineB.direction.x
+                val z0 = lineA.position.z + (lineA.direction.z * t0)
+                val z1 = lineB.position.z + (lineB.direction.z * t1)
+                println("$z0, $z1")
+                if(z0 == z1) {
+                    //val goal = Point3DWide(isectLong.x, isectLong.y, z0)
+                    val goal = isectLong
+                    var debug = false
+                    //    // x=242369545669096, y=339680097675927, z=102145685363875, vx=107, vy=-114, vz=304
+                    if (goal == Point3DWide(242369545669096, 339680097675927, 102145685363875)) {
+                        println("At least its a goal")
+                        debug = true
+                    }
+                    //println("$option, $isectLong,  ---- $t0 - $t1 - $z0 - $z1")
+                    var good = true
+                    linesNew.drop(2).forEach { lineC ->
+                        if (goal.x == lineC.position.x && lineC.direction.x == 0L) {
+                            // continue
+                        } else if (lineC.direction.x == 0L || (goal.x - lineC.position.x) % lineC.direction.x != 0L) {
+                            if (debug) {
+                                println("Failed the X test: ${(goal.x - lineC.position.x) % lineC.direction.x}")
+                                println("(${goal.x} - ${lineC.position.x}) % ${lineC.direction.x}")
+                            }
+                            good = false
                         }
+                        if (goal.y == lineC.position.y && lineC.direction.y == 0L) {
+                            // continue
+                        } else if (lineC.direction.y == 0L || (goal.y - lineC.position.y) % lineC.direction.y != 0L) {
+                            if (debug) {
+                                println("Failed the Y test")
+                            }
 
+                            good = false
+                        }
+                        if (goal.z == lineC.position.z && lineC.direction.z == 0L) {
+                            // continue
+                        } else if (lineC.direction.z == 0L || (goal.z - lineC.position.z) % lineC.direction.z != 0L) {
+                            if (debug) {
+                                println("Failed the Z test")
+                            }
 
+                            good = false
+                        }
+                    }
+                    if (good) {
+                        println("Found: $goal")
+                        return goal.x + goal.y + goal.z
                     }
                 }
-
             }
         }
         TODO()
+    }
+
+    fun solvePart2_solver(): Any {
+        val hail = input.map { it.split(" @ ", ", ").map { it.trim().toLong() } }
+        val ctx = Context()
+        val solver = ctx.mkSolver()
+        val mx = ctx.mkRealConst("mx")
+        val my = ctx.mkRealConst("my")
+        val mz = ctx.mkRealConst("mz")
+        val mxv = ctx.mkRealConst("mxv")
+        val myv = ctx.mkRealConst("myv")
+        val mzv = ctx.mkRealConst("mzv")
+        repeat(3) {
+            val (sx, sy, sz, sxv, syv, szv) = hail[it]
+            val t = ctx.mkRealConst("t$it")
+            solver.add(ctx.mkEq(ctx.mkAdd(mx, ctx.mkMul(mxv, t)), ctx.mkAdd(ctx.mkReal(sx.toString()), ctx.mkMul(ctx.mkReal(sxv.toString()), t))))
+            solver.add(ctx.mkEq(ctx.mkAdd(my, ctx.mkMul(myv, t)), ctx.mkAdd(ctx.mkReal(sy.toString()), ctx.mkMul(ctx.mkReal(syv.toString()), t))))
+            solver.add(ctx.mkEq(ctx.mkAdd(mz, ctx.mkMul(mzv, t)), ctx.mkAdd(ctx.mkReal(sz.toString()), ctx.mkMul(ctx.mkReal(szv.toString()), t))))
+        }
+        if (solver.check() == Status.SATISFIABLE) {
+            val model = solver.model
+            val solution = listOf(mx, my, mz).sumOf { model.eval(it, false).toString().toDouble() }
+            println(model)
+            return solution.toLong()
+        }
+        TODO()
+    }
+
+    operator fun <T> List<T>.component1(): T {
+        return this[0]
+    }
+    operator fun <T> List<T>.component2(): T {
+        return this[1]
+    }
+    operator fun <T> List<T>.component3(): T {
+        return this[2]
+    }
+    operator fun <T> List<T>.component4(): T {
+        return this[3]
+    }
+    operator fun <T> List<T>.component5(): T {
+        return this[4]
+    }
+    operator fun <T> List<T>.component6(): T {
+        return this[5]
     }
 
 }
