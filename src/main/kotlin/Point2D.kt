@@ -101,6 +101,17 @@ data class Point2D(val x:Int, val y:Int): Comparable<Point2D> {
     }
 }
 
+data class Point2DWide(val x: Long, val y: Long) {
+    fun distance(other: Point2DWide): Long {
+        return x.coerceAtLeast(other.x) - x.coerceAtMost(other.x) + y.coerceAtLeast(other.y) - y.coerceAtMost(other.y)
+    }
+    fun toDouble(): Point2DDouble {
+        return Point2DDouble(x.toDouble(), y.toDouble())
+    }
+}
+
+data class Point2DDouble(val x: Double, val y: Double)
+
 
 fun Map<Point2D, Int>.print() {
     for(y in keys.minAndMaxOf { it.y }.let { it.first..it.second }) {

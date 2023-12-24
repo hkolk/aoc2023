@@ -2,11 +2,6 @@ class Day18(val input: List<String>) {
     val commands =
         input.map { line -> line.splitIgnoreEmpty(" ", "(", ")", "#").let { Triple(it[0], it[1].toInt(), it[2]) } }
 
-    data class Point2DWide(val x: Long, val y: Long) {
-        fun distance(other: Point2DWide): Long {
-            return x.coerceAtLeast(other.x) - x.coerceAtMost(other.x) + y.coerceAtLeast(other.y) - y.coerceAtMost(other.y)
-        }
-    }
     fun solvePart1() = solve(commands.map { it.first to it.second })
     fun solvePart2() = solve(commands.map {cmd -> cmd.third.let {
         listOf("R", "D", "L", "U")[it.last().digitToInt()] to it.take(5).toInt(16) }

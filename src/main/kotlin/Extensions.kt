@@ -104,6 +104,10 @@ fun List<Long>.lcm(): Long {
 
 infix fun <T> Set<T>.xor(that: Set<T>): Set<T> = (this - that) + (that - this)
 
+
 fun <A, B>List<A>.pmap(f: suspend (A) -> B): List<B> = runBlocking {
     map { async(Dispatchers.Default) { f(it) } }.awaitAll()
+}
+fun <A, B>List<A>.pmapIndexed(f: suspend (index: Int, A) -> B): List<B> = runBlocking {
+    mapIndexed { idx, it -> async(Dispatchers.Default) { f(idx, it) } }.awaitAll()
 }

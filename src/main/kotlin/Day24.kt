@@ -4,38 +4,8 @@ class Day24(val input: List<String>) {
     } }
 
 
-    data class Point3DWide(val x: Long, val y: Long, val z: Long) {
-        fun move(direction: Point3D, times: Int=1): Point3DWide = move( { Point3DWide(it.x+direction.x, it.y + direction.y, it.z + direction.z) }, times)
 
-        fun move(direction: Point3DWide, times: Int=1): Point3DWide {
-            if(times < 0) {
-                return move({ Point3DWide(it.x - direction.x, it.y - direction.y, it.z - direction.z) }, -times)
-            } else {
-                return move({ Point3DWide(it.x + direction.x, it.y + direction.y, it.z + direction.z) }, times)
-            }
-        }
 
-        fun move(direction: (Point3DWide) -> Point3DWide, times: Int=1): Point3DWide {
-            assert(times > 0)
-            return direction.repeated(times).fold(this) { acc, func -> func(acc) }
-        }
-        fun toDouble() = Point3DDouble(x.toDouble(), y.toDouble(), z.toDouble())
-        fun diff(other: Point3DWide): Point3DWide {
-            return Point3DWide(other.x - this.x, other.y - this.y, other.z - this.z )
-        }
-
-        fun divideByOrNull(interval: Int): Point3DWide? {
-            if(x % interval != 0L || y % interval != 0L || z % interval != 0L) {
-                return null
-            }
-            return Point3DWide(x/interval, y/interval, z/interval)
-
-        }
-    }
-
-    data class Point3DDouble(val x: Double, val y: Double, val z: Double) {
-
-    }
     data class Line(val id: Int, val position: Point3DWide, val direction: Point3DWide) {
 
         fun isPointInFuture(x: Double): Boolean {
@@ -44,6 +14,10 @@ class Day24(val input: List<String>) {
             } else {
                 return direction.x <= 0
             }
+        }
+
+        fun next(): Point3DWide {
+            return this.position.move(direction)
         }
 
 
@@ -75,7 +49,6 @@ class Day24(val input: List<String>) {
             val isectY = (a1*c2 - a2*c1)/determinant
             //println("Isect: $isectX, $isectY")
             return isectX to isectY
-
         }
 
         fun futurePoints(seconds: Int): Sequence<Point3DWide> {
@@ -88,9 +61,48 @@ class Day24(val input: List<String>) {
             }
         }
 
-        fun intersect3D(line: Day24.Line): Point3DDouble? {
+        fun intersect3D(other: Line): Point3DDouble? {
+            val xAndYIsect = intersect(position.getXY(), next().getXY(), other.position.getXY(), other.next().getXY())
+            if(xAndYIsect == null) {
+                return null
+            }
+            //println("X + Y: $xAndYIsect")
+            val xAndZIsect = intersect(position.getXZ(), next().getXZ(), other.position.getXZ(), other.next().getXZ())
+            if(xAndZIsect == null || xAndYIsect.x != xAndZIsect.x) {
+                return null
+            }
+            //println("X + Z: $xAndYIsect")
+            return Point3DDouble(xAndYIsect.x, xAndYIsect.y, xAndZIsect.y)
 
+        }
+        fun intersect(a: Point2DWide, b: Point2DWide, p: Point2DWide, q:Point2DWide): Point2DDouble? {
+            //lines.forEach { println(it) }
+            val A = a.toDouble()
+            val B = b.toDouble()
+            val C = p.toDouble()
+            val D = q.toDouble()
+            val a1 = B.y - A.y
+            val b1 = A.x - B.x
+            val c1 = a1 * A.x + b1*A.y
+            //val c1 = addExact(multiplyExact(a1, A.x), multiplyExact(b1, A.y))
+            //println("Line 1: $a1, $b1, $c1")
 
+            val a2 = D.y - C.y
+            val b2 = C.x - D.x
+            val c2 = a2 * C.x + b2 * C.y
+            //val c2 = addExact(multiplyExact(a2, C.x), multiplyExact(b2, C.y))
+            //println("Line 2: $a2, $b2, $c2")
+
+            val determinant = a1*b2 - a2*b1 //multiplyExact(a1, b2) - multiplyExact(a2, b1)
+            //println("Deteriminant: $determinant")
+            if(determinant == 0.0) {
+                return null
+            }
+
+            val isectX = (b2*c1 - b1*c2)/determinant
+            val isectY = (a1*c2 - a2*c1)/determinant
+            //println("Isect: $isectX, $isectY")
+            return Point2DDouble(isectX, isectY)
         }
     }
     fun solvePart1(box: ClosedFloatingPointRange<Double>): Int {
@@ -113,20 +125,20 @@ class Day24(val input: List<String>) {
             }
         }
         return counter
-
-        TODO()
     }
-    fun solvePart2(): Int {
+    fun solvePart2(): Long {
         // find possible lines in 300 seconds
         //val lineA = Line(0, Point3DWide(0, 0, 0), Point3D(1, 1, 0))
         //val lineB = Line(0, Point3DWide(0, 2, 0), Point3D(1, 1, 0))
 
-        val pointsA = lines[0].futurePoints(10).toList()
-        val pointsB = lines[1].futurePoints(10).toList()
-        val pointsC = lines[2].futurePoints(10).toList()
+        val pointsA = lines[0].futurePoints(100).toList()
+        val pointsB = lines[1].futurePoints(100).toList()
 
         val options = pointsA.flatMapIndexed { aSec, aPos ->
-            pointsB.mapIndexedNotNull{ bSec, bPos ->
+            if(aSec % 100 == 0) {
+                println("aSec: $aSec")
+            }
+            pointsB.pmapIndexed{ bSec, bPos ->
                 if(aSec == bSec) {
                     null
                 } else {
@@ -138,24 +150,44 @@ class Day24(val input: List<String>) {
                         null
                     }
                 }
-            }
+            }.filterNotNull()
         }
-        options.forEach { println(it) }
+        println("Options: ${options.size}")
+        //options.forEach { println(it) }
 
         //val asdf = options.first().first()
         //val asdf2 = pointsA[asdf.first.first].move(asdf.second, asdf.first.second - asdf.first.first)
         //println("$asdf2 == ${pointsB[asdf.first.second]}")
 
+        /*
         options.forEach { (secs, diff) ->
             val asdf = pointsA[secs.first].move(diff, secs.second - secs.first)
             println("$asdf == ${pointsB[secs.second]}")
         }
-        val lines = options.map {
-            Line(0, pointsA[it.first.first]!!, it.second)
+
+         */
+        val optionLines = options.map {
+            Line(0, pointsA[it.first.first]!!.move(it.second, -it.first.first), it.second)
         }
-        lines.filter {
-            it.intersect3D(lines[2])
+        val newLines = optionLines.filter {option ->
+            lines.all {
+                val intersects = option.intersect3D(it)
+                intersects != null && it.isPointInFuture(intersects.x)
+            }
         }
+
+        newLines.forEach {line ->
+            //println("Line: $line")
+            lines.forEach {
+                val isect = it.intersect3D(line)
+
+                println("  Isect: $isect")
+            }
+        }
+        println(newLines)
+        val winner = newLines.first()
+        return winner.position.x + winner.position.y + winner.position.z
         TODO()
     }
+
 }

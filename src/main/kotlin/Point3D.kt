@@ -36,3 +36,44 @@ data class Point3D(val x:Int, val y:Int, val z:Int) {
         }
     }
 }
+
+data class Point3DWide(val x: Long, val y: Long, val z: Long) {
+    fun move(direction: Point3D, times: Int=1): Point3DWide = move( { Point3DWide(it.x+direction.x, it.y + direction.y, it.z + direction.z) }, times)
+
+    fun getXY() = Point2DWide(x, y)
+    fun getXZ() = Point2DWide(x, z)
+    fun getYZ() = Point2DWide(y, z)
+
+    fun move(direction: Point3DWide, times: Int=1): Point3DWide {
+        if(times < 0) {
+            return move({ Point3DWide(it.x - direction.x, it.y - direction.y, it.z - direction.z) }, -times)
+        } else {
+            return move({ Point3DWide(it.x + direction.x, it.y + direction.y, it.z + direction.z) }, times)
+        }
+    }
+
+    fun move(direction: (Point3DWide) -> Point3DWide, times: Int=1): Point3DWide {
+        assert(times >= 0)
+        return direction.repeated(times).fold(this) { acc, func -> func(acc) }
+    }
+    fun toDouble() = Point3DDouble(x.toDouble(), y.toDouble(), z.toDouble())
+    fun diff(other: Point3DWide): Point3DWide {
+        return Point3DWide(other.x - this.x, other.y - this.y, other.z - this.z )
+    }
+
+    fun divideByOrNull(interval: Int): Point3DWide? {
+        if(x % interval != 0L || y % interval != 0L || z % interval != 0L) {
+            return null
+        }
+        return Point3DWide(x/interval, y/interval, z/interval)
+
+    }
+
+    operator fun minus(other: Point3DWide): Point3DWide {
+        return Point3DWide(x - other.x, y - other.y, z - other.z)
+
+    }
+}
+data class Point3DDouble(val x: Double, val y: Double, val z: Double) {
+
+}
