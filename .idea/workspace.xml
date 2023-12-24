@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day18.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day18.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day24.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day24.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Extensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Point2D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Point2D.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Point3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Point3D.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day24Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day24Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +78,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day24Test$Part2.Actual Answer">
+  <component name="RunManager" selected="JUnit.Day24Test$Part2.Matches Example">
     <configuration name="Day23Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
       <option name="PACKAGE_NAME" value="" />
@@ -136,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Day24Test$Part2.Actual Answer" />
         <item itemvalue="JUnit.Day24Test$Part2.Matches Example" />
+        <item itemvalue="JUnit.Day24Test$Part2.Actual Answer" />
         <item itemvalue="JUnit.Day24Test$Part1.Matches Example" />
         <item itemvalue="JUnit.Day24Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day23Test$Part2.Actual Answer" />
@@ -159,7 +155,7 @@
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
       <workItem from="1702717352735" duration="25496000" />
-      <workItem from="1702966288839" duration="75489000" />
+      <workItem from="1702966288839" duration="80071000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />

@@ -75,5 +75,7 @@ data class Point3DWide(val x: Long, val y: Long, val z: Long) {
     }
 }
 data class Point3DDouble(val x: Double, val y: Double, val z: Double) {
+    fun isExact() = (x % 1 == 0.0 && y % 1 == 0.0 && z % 1 == 0.0)
+    fun toLong() = Point3DWide(x.toLong(), y.toLong(), z.toLong())
 
 }
