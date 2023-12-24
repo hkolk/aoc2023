@@ -194,6 +194,9 @@ class Day24(val input: List<String>) {
         }
     }
 
+    // Based on David Sharick's python code:
+    // https://gitlab.com/davidsharick/advent-of-code-2023/-/blob/main/day24/day24.py
+    // Used the below Z3 Solver to get the answer to help with debugging
     fun solvePart2(): Long {
         val xInvalid = mutableSetOf<Long>()
         val yInvalid = mutableSetOf<Long>()
@@ -217,8 +220,8 @@ class Day24(val input: List<String>) {
 
         //val possibleVelocities = (range).flatMap {x -> range.flatMap { y -> range.map { z -> Point3DWide(x, y, z) } }   }
         val range = -500L..500L
-        listOf(Point3DWide(x=107, y=-114, z=304)).forEach {  option ->
-        //yieldVelocities(range, xInvalid, yInvalid, zInvalid).forEach {option ->
+        //listOf(Point3DWide(x=107, y=-114, z=304)).forEach {  option ->
+        yieldVelocities(range, xInvalid, yInvalid, zInvalid).forEach {option ->
             val linesNew = lines.map { Line(it.id, it.position, it.direction - option) }
             val lineA = linesNew[0]
             val lineB = linesNew[1]
@@ -228,18 +231,18 @@ class Day24(val input: List<String>) {
             //println(lineB)
             //println(lineA.intersect2D(lineB).let { it!!.first.toLong() to it!!.second.toLong() })
             val isect = lineA.intersect2D(lineB)
-            println(isect!!.second % 1 == 0.0)
-            println(isect!!.second % 1)
-            if(isect != null && lineA.isPointInFuture(Point3DDouble(isect.first, isect.second, 0.0), true) && isect.first % 1 == 0.0 && isect.second % 1 == 0.0 ) {
+            //println(isect!!.second % 1 == 0.0)
+            //println(isect!!.second % 1)
+            if(isect != null && lineA.isPointInFuture(Point3DDouble(isect.first, isect.second, 0.0), true)) {
                 val isectLong = Point3DDouble(isect.first, isect.second, 0.0).toLong()
                 val t0 = (isectLong.x - lineA.position.x) / lineA.direction.x
                 val t1 = (isectLong.x - lineB.position.x) / lineB.direction.x
                 val z0 = lineA.position.z + (lineA.direction.z * t0)
                 val z1 = lineB.position.z + (lineB.direction.z * t1)
-                println("$z0, $z1")
+                //println("$z0, $z1")
                 if(z0 == z1) {
                     //val goal = Point3DWide(isectLong.x, isectLong.y, z0)
-                    val goal = isectLong
+                    val goal = Point3DWide(isectLong.x, isectLong.y, z0)
                     var debug = false
                     //    // x=242369545669096, y=339680097675927, z=102145685363875, vx=107, vy=-114, vz=304
                     if (goal == Point3DWide(242369545669096, 339680097675927, 102145685363875)) {
