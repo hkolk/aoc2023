@@ -48,5 +48,11 @@ class Day24Test {
             val answer = Day24(realInput).solvePart2()
             assertThat(answer).isEqualTo(684195328708898L)
         }
+
+        @Test
+        fun `Actual Answer With Solver`() {
+            val answer = Day24(realInput).solvePart2_solver()
+            assertThat(answer).isEqualTo(684195328708898L)
+        }
     }
 }

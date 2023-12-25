@@ -303,7 +303,14 @@ class Day24(val input: List<String>) {
         repeat(3) {
             val (sx, sy, sz, sxv, syv, szv) = hail[it]
             val t = ctx.mkRealConst("t$it")
-            solver.add(ctx.mkEq(ctx.mkAdd(mx, ctx.mkMul(mxv, t)), ctx.mkAdd(ctx.mkReal(sx.toString()), ctx.mkMul(ctx.mkReal(sxv.toString()), t))))
+            solver.add(
+                ctx.mkEq(
+                    ctx.mkAdd(mx, ctx.mkMul(mxv, t)),
+                    ctx.mkAdd(ctx.mkReal(sx.toString()),
+                        ctx.mkMul(ctx.mkReal(sxv.toString()), t)
+                    )
+                )
+            )
             solver.add(ctx.mkEq(ctx.mkAdd(my, ctx.mkMul(myv, t)), ctx.mkAdd(ctx.mkReal(sy.toString()), ctx.mkMul(ctx.mkReal(syv.toString()), t))))
             solver.add(ctx.mkEq(ctx.mkAdd(mz, ctx.mkMul(mzv, t)), ctx.mkAdd(ctx.mkReal(sz.toString()), ctx.mkMul(ctx.mkReal(szv.toString()), t))))
         }
