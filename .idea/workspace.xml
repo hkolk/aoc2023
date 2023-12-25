@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104055b3-ce9f-4929-ad0c-f492d17a7567" name="Changes" comment="Version 1">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day25.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/Day25Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/day25.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day24.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day24.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day24Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day24Test.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day21.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day21.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Day21Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Day21Test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,37 +78,31 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Day25Test$Part1.Actual Answer">
-    <configuration name="Day24Test$Part2.Actual Answer With Solver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Day21Test$Part2.Matches Example">
+    <configuration name="Day21Test$Part1.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Day24Test$Part2" />
-      <option name="METHOD_NAME" value="Actual Answer With Solver" />
-      <option name="TEST_OBJECT" value="method" />
-      <envs>
-        <env name="DYLD_LIBRARY_PATH" value="$USER_HOME$/z3/bin/" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day24Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Day24Test$Part2" />
+      <option name="PACKAGE_NAME" value="Day21Test" />
+      <option name="MAIN_CLASS_NAME" value="Day21Test$Part1" />
       <option name="METHOD_NAME" value="Actual Answer" />
       <option name="TEST_OBJECT" value="method" />
-      <envs>
-        <env name="DYLD_LIBRARY_PATH" value="$USER_HOME$/z3/bin/" />
-      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day24Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Day21Test$Part2.Actual Answer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="aoc2023" />
-      <option name="PACKAGE_NAME" value="Day24Test" />
-      <option name="MAIN_CLASS_NAME" value="Day24Test$Part2" />
+      <option name="PACKAGE_NAME" value="Day21Test" />
+      <option name="MAIN_CLASS_NAME" value="Day21Test$Part2" />
+      <option name="METHOD_NAME" value="Actual Answer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day21Test$Part2.Matches Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aoc2023" />
+      <option name="PACKAGE_NAME" value="Day21Test" />
+      <option name="MAIN_CLASS_NAME" value="Day21Test$Part2" />
       <option name="METHOD_NAME" value="Matches Example" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -139,19 +130,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.Day21Test$Part1.Actual Answer" />
+      <item itemvalue="JUnit.Day21Test$Part2.Actual Answer" />
+      <item itemvalue="JUnit.Day21Test$Part2.Matches Example" />
       <item itemvalue="JUnit.Day25Test$Part1.Actual Answer" />
       <item itemvalue="JUnit.Day25Test$Part1.Matches Example" />
-      <item itemvalue="JUnit.Day24Test$Part2.Actual Answer With Solver" />
-      <item itemvalue="JUnit.Day24Test$Part2.Actual Answer" />
-      <item itemvalue="JUnit.Day24Test$Part2.Matches Example" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Day21Test$Part2.Matches Example" />
+        <item itemvalue="JUnit.Day21Test$Part2.Actual Answer" />
+        <item itemvalue="JUnit.Day21Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day25Test$Part1.Actual Answer" />
         <item itemvalue="JUnit.Day25Test$Part1.Matches Example" />
-        <item itemvalue="JUnit.Day24Test$Part2.Actual Answer With Solver" />
-        <item itemvalue="JUnit.Day24Test$Part2.Actual Answer" />
-        <item itemvalue="JUnit.Day24Test$Part2.Matches Example" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +161,7 @@
       <workItem from="1701417019047" duration="3636000" />
       <workItem from="1701502723267" duration="22909000" />
       <workItem from="1702717352735" duration="25496000" />
-      <workItem from="1702966288839" duration="87157000" />
+      <workItem from="1702966288839" duration="100022000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1">
       <option name="closed" value="true" />
