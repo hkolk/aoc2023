@@ -1,0 +1,2 @@
+class Day25Test {
+}
