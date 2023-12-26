@@ -37,7 +37,7 @@ class Day21(val input: List<String>) {
             grouped.keys.minAndMaxOf { it.y }.toRange().forEach { y ->
                 println("")
                 grouped.keys.minAndMaxOf { it.x }.toRange().forEach { x ->
-                    val alligned = (grouped[Point2D(x, y)]?:0).toString().padStart(3)
+                    val alligned = (grouped[Point2D(x, y)]?:0).toString().padStart(4)
                     print(" [$alligned] ")
                 }
                 println("")
@@ -53,7 +53,7 @@ class Day21(val input: List<String>) {
     fun solvePart1(steps:Int=64): Int = fillSquare(origStart, steps).first
 
 
-    fun solvePart2(): Int {
+    fun solvePart2(): Long {
         /* for checking if the middle rows are traversable */
         //println(maxX/2)
         //val middlerow = map.filter { it.key.x == maxX/2 }.values.groupBy { it }.map { it.key to it.value.size }
@@ -70,7 +70,10 @@ class Day21(val input: List<String>) {
             "SE" to Point2D(0, 0),
             "SW" to Point2D(maxX, 0)
         )
-        val filledMaps = maps.map { it.key to fillSquare(it.value, 5000) }.toMap()
+        val filledMaps = maps.map { it.key to fillSquare(it.value, 5000).second.takeLast(2).map { it.first % 2 to it.second }.toMap() }.toMap()
+
+        println("ASDF: ${fillSquare(maps["C"]!!, 10).second.takeLast(2).map { it.first % 2 to it.second }}")
+
 
         filledMaps.forEach{
             //println("${it.key}: ${it.value.first} - ${it.value.second.last()}")
@@ -82,10 +85,14 @@ class Day21(val input: List<String>) {
         println(((maxX+1) + (maxX/2)))
         //val steps = 196 // diamond with center covered and the edges partially. Count = 33652
         //val steps = 195 // diamond with center covered and the edges partially. Count = 33248
-        //val steps = 197 // count = 34034 but not correct! We are missing the new west/east/sout/north
+        //val steps = 197 // count = 34034 but not correct! We are missing the new west/east/south/north
         //val steps = 131 // count = 15082
         //val steps = 22 // count = 529
-        val steps = 44
+        //val steps = 44 // count = 2025
+        //val steps = 43 // count 1936
+        //val steps = 45 // count = 2116
+        //val steps = 35 // 1296
+        val steps = 26501365
 
         val toTheLeft = steps - ((mapsize-1)/2)
         println("other side: ${toTheLeft / mapsize}")
@@ -112,46 +119,64 @@ class Day21(val input: List<String>) {
         val verticalToCorner = (mapsize+((mapsize-1)/2))
         val cornerToCorner = (mapsize*2)
 
-        val count2 = mutableListOf<Pair<String, Int>>()
+        val count2 = mutableListOf<Pair<String, Long>>()
         // center
         count2 += if(steps > centerToCorner) {
-            "Center-Full" to filledMaps["C"]!!.second[mapsize-1-((steps)%2)].second
+            //"Center-Full" to filledMaps["C"]!!.second[mapsize-1-((steps)%2)].second
+            "Center-Full" to filledMaps["C"]!![steps % 2]!!.toLong()
         } else {
-            "Center-partial" to fillSquare(maps["C"]!!, steps ).first
+            "Center-partial" to fillSquare(maps["C"]!!, steps ).first.toLong()
         }
 
         // vertical
         val straightLeft = steps - centerToEdge
         // full squares
         val fullSquares = ((straightLeft-verticalToCorner+verticalToEdge) / verticalToEdge).coerceAtLeast(0)
-        println("fullSquares: $fullSquares ( (($straightLeft-$verticalToCorner+$verticalToEdge) / $verticalToEdge) )")
+        //println("fullSquares: $fullSquares ( (($straightLeft-$verticalToCorner+$verticalToEdge) / $verticalToEdge) )")
 
         val straightLeftMinusSquare = (straightLeft - (verticalToEdge*fullSquares))
-        println("straightLeftMinusSquare: $straightLeftMinusSquare ($straightLeft - ($verticalToEdge*$fullSquares))")
+        //println("straightLeftMinusSquare: $straightLeftMinusSquare ($straightLeft - ($verticalToEdge*$fullSquares))")
 
         // full squares
-        // TODO: Switch between even and uneven
-        count2 += listOf("W", "E", "S", "N").map { "$it-full-$fullSquares" to filledMaps[it]!!.first * fullSquares }
+        count2 += listOf("W", "E", "S", "N").map { orientation ->
+            "$orientation-full-$fullSquares" to (0..< fullSquares).sumOf{filledMaps[orientation]!![(it + (steps % 2))%2]!!.toLong() }
+        }
         // far edge
-        count2 += listOf("W", "E", "S", "N").map { "$it-semi-edge" to fillSquare(maps[it]!!, straightLeftMinusSquare - verticalToEdge - 1 ).first }
+        count2 += listOf("W", "E", "S", "N").map { "$it-semi-edge" to fillSquare(maps[it]!!, straightLeftMinusSquare - verticalToEdge - 1 ).first.toLong() }
         // square before
-        count2 += listOf("W", "E", "S", "N").map { "$it-edge" to fillSquare(maps[it]!!, straightLeftMinusSquare - 1 ).first }
+        count2 += listOf("W", "E", "S", "N").map { "$it-edge" to fillSquare(maps[it]!!, straightLeftMinusSquare - 1 ).first.toLong() }
 
         // diagonal
         val diagStraightLeft = steps - centerToCorner
         println("diagStraightLeft = $diagStraightLeft")
-        val diagStraightLeftEdge = diagStraightLeft % cornerToCorner
-        println("diagStraightLeftEdge = $diagStraightLeftEdge")
+        val diagStraightLeftSemi = steps % (cornerToCorner-1)
+        println("diagStraightLeftSemi = $diagStraightLeftSemi ($steps % $cornerToCorner)")
+
+
+        // TODO: this is so broken
+        val diagStraightLeftEdge = diagStraightLeftSemi - centerToCorner
+        println("diagStraightLeftEdge = $diagStraightLeftEdge ($diagStraightLeftSemi - $centerToCorner)")
+
+        val diagEdgeStart = (steps - centerToCorner) % verticalToEdge
+        println("diagEdgeStart = $diagEdgeStart (($steps - $centerToCorner) % $verticalToEdge)")
 
         val fulldiag = triangular(fullSquares)
-        println("fulldiag: $fulldiag")
+        //println("fulldiag: $fulldiag")
 
-        count2 += listOf("NW", "NE", "SW", "SE").map { "$it-full-$fulldiag" to filledMaps[it]!!.first * fulldiag }
+        count2 += listOf("NW", "NE", "SW", "SE").map { orientation ->
+            "$orientation-full-$fulldiag" to (0..< fullSquares).sumOf{
+                filledMaps[orientation]!![(it+1+(steps % 2))%2]!! * it.toLong()
+            }
+        }
+        //count2 += listOf("NW", "NE", "SW", "SE").map { "$it-full-$fulldiag" to filledMaps[it]!![steps%2]!! * fulldiag }
 
-        count2 += listOf("NW", "NE", "SW", "SE").map { "$it-diag-straight-$fullSquares" to fillSquare(maps[it]!!, diagStraightLeftEdge - 2 ).first * fullSquares }
+        count2 += listOf("NW", "NE", "SW", "SE").map { "$it-diag-semi-$fullSquares" to fillSquare(maps[it]!!, (diagEdgeStart-2+verticalToEdge) ).first * fullSquares.toLong() }
 
+        count2 += listOf("NW", "NE", "SW", "SE").map { "$it-diag-edge-$fullSquares" to fillSquare(maps[it]!!, (diagEdgeStart-2) ).first * (fullSquares+1).toLong() }
 
-        println("Count2: ${count2.sumOf { it.second }}($count2)")
+        count2.forEach { println(it) }
+        println("Count2: ${count2.sumOf { it.second.toLong() }}")
+        return count2.sumOf { it.second.toLong() }
 
         val bigMap = map.flatMap { (pos, char) ->
             (Point2D.DIRECTIONS + Point2D.DIRECTIONSDIAG).map { pos.move(it, mapsize) to char } + (pos to char)
@@ -161,8 +186,8 @@ class Day21(val input: List<String>) {
             (Point2D.DIRECTIONS + Point2D.DIRECTIONSDIAG).map { pos.move(it, mapsize*3) to char } + (pos to char)
         }.toMap()
 
-        val asdf = fillSquare(origStart, steps, megaMap)
-        println(asdf.first)
+        //val asdf = fillSquare(origStart, steps, megaMap)
+        //println(asdf.first)
         // edge of map = from east to west: 11 (mapsize)
         //               from east to covered: 11+5 (mapsize+((mapsize-1)/2))
         //               from center to edge: 5 ((mapsize-1)/2)
